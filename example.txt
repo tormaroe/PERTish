@@ -1,0 +1,4 @@
+A Work item 1   1  3  7.5
+B Work item 2   2  4  10
+C Work item 3 with a really long text that may be problematic   0  2  6
+D Work item 4   2  2  3
