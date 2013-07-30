@@ -1,4 +1,11 @@
-A Work item 1   1  3  7.5
-B Work item 2   2  4  10
-C Work item 3 with a really long text that may be problematic   0  2  6
-D Work item 4   2  2  3
+0  Read up on PERT                       0.5    1     2
+1  Create repo and VS project            0.25   0.5   0.5
+2  Make some ASCII art program header    0.5    0.75  1.5
+A  Implement file parsing                0.5    1     2
+B  Implement analysis of estimates       1      2     4
+C  Display data in console window        0.75   1     2
+D  Select charting tool                  0      0.75  1.5
+E  Display probability charts            0.5    1     3
+F  Testing and bugfixing                 0.5    0.75  3
+G  Create a logo                         0.5    1     2
+H  Blog about it                         1      2     3
