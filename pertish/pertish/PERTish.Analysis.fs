@@ -55,12 +55,12 @@ type Distribution = {
 
 let getDistribution (estimate:EstimationTotal) = 
     let dist = NormalDist( mean = float estimate.Expected, 
-                           var = float estimate.Variance )
+                           var = Math.Sqrt (float estimate.Variance) )
     let prob = seq { 
-        for x in (float estimate.Optimistic) .. (float estimate.Pessimistic) -> 
+        for x in (float estimate.Optimistic) .. 0.1 .. (float estimate.Pessimistic) -> 
             x, dist.PDF(x) * 100.0 }
     let cumu = seq {
-        for x in (float estimate.Optimistic) .. (float estimate.Pessimistic) ->
+        for x in (float estimate.Optimistic) .. 0.1 .. (float estimate.Pessimistic) ->
             x, dist.CDF(x) * 100.0 }
     { Probability = prob ; Cumulative = cumu }
 
@@ -74,7 +74,7 @@ let printReport (items: WorkItem seq) (dist: Distribution) =
 
     let printPercentage p =
         let est, cert = getPercentCertainty p dist
-        printfn "| Statistically %.1f%% certain estimate          | %8.1f |" cert est
+        printfn "| %.1f%% chance of DONE after..                  | %8.1f |" cert est
 
     let total = getTotal items
     printfn "------------------------------------------------------------"
@@ -92,6 +92,7 @@ let printReport (items: WorkItem seq) (dist: Distribution) =
     printfn "------------------------------------------------------------"
     printfn "| +++ EXPECTED ESTIMATE +++                     | %8.1f |" total.Expected
     printfn "------------------------------------------------------------"
+    printPercentage 25
     printPercentage 50
     printPercentage 75
     printPercentage 100
